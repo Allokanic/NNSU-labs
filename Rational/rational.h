@@ -12,6 +12,7 @@ public:
 	~Rational() = default;
 
 	Rational operator =(const Rational& other);
+	Rational operator =(const int& other);
 
 	Rational& operator += (const Rational& other);
 	Rational& operator += (const int& other);

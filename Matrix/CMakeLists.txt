@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
-set(ProjectId rational)
+set(ProjectId matrix)
 
 project(${ProjectId})
 

@@ -1,0 +1,2 @@
+There is no formal requirements.
+You can see available methods in header file.

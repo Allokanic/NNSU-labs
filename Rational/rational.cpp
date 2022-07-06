@@ -37,16 +37,20 @@ Rational::Rational(const std::string format) {
 	i++;
 	while (i < format.size()) 
 		denumer.push_back(format[i++]);
-	std::reverse(numen.begin(), numen.end());
-	std::reverse(denumer.begin(), denumer.end());
 	num = atoi(numen.c_str());
 	den = atoi(denumer.c_str());
 	if (!den) den = 1;
 }
 
 Rational Rational::operator =(const Rational& other) {
-	this->num = other.num;
-	this->den = other.den;
+	num = other.num;
+	den = other.den;
+	return *this;
+}
+
+Rational Rational::operator =(const int& other) {
+	num = other;
+	den = 1;
 	return *this;
 }
 
@@ -66,6 +70,7 @@ Rational& Rational::operator -= (const Rational& other) {
 	int common_den = lcm(den, other.den);
 	num *= (common_den / den);
 	num -= (other.num * (common_den / other.den));
+	den = common_den;
 	shorten();
 	return *this;
 }
@@ -150,7 +155,7 @@ bool Rational::operator >(const Rational& other) {
 
 std::ostream& operator << (std::ostream& stream, const Rational& object) {
 	stream << object.num;
-	if (object.den != 1)
+	if (object.den != 1) 
 		stream << '/' << object.den;
 	return stream;
 }
@@ -158,9 +163,9 @@ std::ostream& operator << (std::ostream& stream, const Rational& object) {
 void Rational::shorten() {
 	if (!num) den = 1;
 	else {
-		size_t tmp = num;
+		size_t tmp = (num > 0 ? num : -num);
 		size_t divider = gcd(tmp, den);
-		num /= divider;
+		num /= static_cast<int>(divider);
 		den /= divider;
 	}
 }

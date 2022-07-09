@@ -4,4 +4,5 @@ set(ProjectId matrix)
 
 project(${ProjectId})
 
-add_library(${ProjectId} STATIC ${ALL_SOURCE_FILES})
+#add_library(${ProjectId} STATIC ${ALL_SOURCE_FILES})
+add_executable (${ProjectId} matrix.cpp matrix.h)

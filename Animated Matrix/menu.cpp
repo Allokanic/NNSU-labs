@@ -123,7 +123,7 @@ void Menu::set_minor_back_color(const WORD color) {
 	minor_back_color = color;
 }
 
-void Menu::add_func_to_list(const int index, void (*_function)()) {
+void Menu::add_func_to_list(const int index, void (Constructor::*_function)()) {
 	object_holder[index].type = ITEM_TYPE::FUNCTION;
 	object_holder[index].function = _function;
 }
@@ -180,10 +180,13 @@ void Menu::reprint_menu_by_center() {
 }
 
 void Menu::MenuItem::open_item() {
-	if (type == ITEM_TYPE::MENU) 
+	/*if (type == ITEM_TYPE::MENU) {
 		inner_menu->launch();
-	else 
-		function();
+	}
+	else if (type == ITEM_TYPE::FUNCTION) {
+		void function();
+	}*/
+	void *function();
 }
 
 void Menu::call_reprint_manager() {
@@ -224,5 +227,15 @@ void Menu::launch() {
 			call_reprint_manager();
 		}
 	}
-	if (prev) prev->launch();
+}
+
+void Constructor::get_matrix() {
+	int ht, wd;
+	std::cout << "¬ведите высоту и ширину матрицы\n";
+	std::cin >> ht >> wd;
+	Matrix temp(ht, wd);
+	std::cout << "¬ведите содержимое матрицы\n";
+	temp.read();
+	std::cout << "its ok\n";
+	exit(-1);
 }
